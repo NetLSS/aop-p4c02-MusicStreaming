@@ -57,3 +57,9 @@ Retrofit 을 이용하여 재생 목록을 받아와 구성함
 PlayList 화면과 Player 화면 간의 전환을 할 수 있음.
 
 Seekbar 를 custom 하여 원하는 UI 로 표시할 수 있음.
+
+---
+
+### mocky
+
+- https://run.mocky.io/v3/e4db045a-23a9-4b49-a3fc-78cf51f3f964
