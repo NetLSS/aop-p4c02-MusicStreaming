@@ -79,12 +79,89 @@
     </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/player_view"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cover_image_card_view"
-        tools:text="safsdsagsdg" />
+        app:use_controller="false" />
+
+
+    <SeekBar
+        android:id="@+id/player_seek_bar"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@id/player_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/play_list_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:clickable="false"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:progressTint="@color/purple_200"
+        android:thumbTint="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/player_view"
+        tools:progress="40" />
+
+    <ImageView
+        android:id="@+id/play_control_image_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_play_arrow_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/player_view"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/skip_next_image_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_skip_next_48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@id/play_control_image_view"
+        app:layout_constraintTop_toTopOf="@id/player_view"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/skip_prev_image_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_skip_previous_48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/play_control_image_view"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/player_view"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/play_list_image_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:src="@drawable/ic_baseline_playlist_play_48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/player_view"
+        app:tint="@color/black" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
