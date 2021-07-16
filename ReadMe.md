@@ -63,3 +63,7 @@ Seekbar 를 custom 하여 원하는 UI 로 표시할 수 있음.
 ### mocky
 
 - https://run.mocky.io/v3/e4db045a-23a9-4b49-a3fc-78cf51f3f964
+
+### group
+
+- 그룹 위젯

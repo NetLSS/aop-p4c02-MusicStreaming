@@ -5,6 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/player_view_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="track_text_view, artist_text_view,
+        cover_image_card_view, bottom_background_view,
+        player_seek_bar, play_time_text_view, total_time_text_view"
+        tools:visibility="visible"
+        android:visibility="gone"/>
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/play_list_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="play_list_recycler_view, title_text_view, play_list_seek_bar"
+        android:visibility="visible"
+        />
+
     <View
         android:id="@+id/top_background_view"
         android:layout_width="0dp"
@@ -28,7 +47,7 @@
         app:layout_constraintVertical_weight="2" />
 
     <TextView
-        android:id="@+id/track_tv"
+        android:id="@+id/track_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -52,6 +71,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/artist_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -59,7 +79,7 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/track_tv"
+        app:layout_constraintTop_toBottomOf="@id/track_text_view"
         tools:text="대한민국" />
 
     <!--    translationY 속성으로 아래로 내림.

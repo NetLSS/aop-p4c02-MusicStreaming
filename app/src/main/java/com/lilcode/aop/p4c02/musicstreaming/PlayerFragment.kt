@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.lilcode.aop.p4c02.musicstreaming.databinding.FragmentPlayerBinding
 import com.lilcode.aop.p4c02.musicstreaming.service.MusicDto
@@ -36,8 +37,18 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initPlayListButton()
+
         getVideoListFromServer()
 
+    }
+
+    private fun initPlayListButton() {
+        binding.playListImageView.setOnClickListener {
+            //TODO: 만약 서버에서 데이터가 다 불려오지 않은 상태 일 때
+
+            binding.playListGroup.isVisible = binding.playerViewGroup.isVisible.also { binding.playerViewGroup.isVisible = binding.playListGroup.isVisible }
+        }
     }
 
     private fun getVideoListFromServer() {
