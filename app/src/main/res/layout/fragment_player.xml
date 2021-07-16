@@ -92,16 +92,21 @@
 
     <SeekBar
         android:id="@+id/player_seek_bar"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginBottom="30dp"
+        android:maxHeight="4dp"
+        android:minHeight="4dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:progressDrawable="@drawable/player_seek_background"
+        android:thumb="@drawable/player_seek_thumb"
         app:layout_constraintBottom_toTopOf="@id/player_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:progress="40" />
 
     <SeekBar
         android:id="@+id/play_list_seek_bar"
