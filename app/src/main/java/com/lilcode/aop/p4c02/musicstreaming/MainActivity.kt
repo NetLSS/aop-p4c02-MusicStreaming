@@ -14,5 +14,9 @@ class MainActivity : AppCompatActivity() {
         _viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
+        // 미래에 재상용성을 위해 프레그먼트로
+        supportFragmentManager.beginTransaction()
+            .replace(viewBinding.fragmentContainer.id, PlayerFragment.newInstance())
+            .commit()
     }
 }
