@@ -1,0 +1,64 @@
+{
+  "musics": [
+    {
+      "track" : "Biology",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/964/biology-1624035636-7bAv4E2brA.mp3",
+      "artist" : "Gameboy Tetris, nublu, Cartoon",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/964/100x100/biology-1624035630-RGVPK9iy6a.jpg"
+    },
+    {
+      "track" : "Bring Me The Light",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/977/bring-me-the-light-1626343234-EKGZQcW4U2.mp3",
+      "artist" : "Mara Necia, T & Sugah",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/977/100x100/bring-me-the-light-1626343231-bEnFjASbN5.jpg"
+    },
+    {
+      "track" : "Shimmer",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/974/shimmer-1626181237-NnYkyEklWB.mp3",
+      "artist" : "THYKIER",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/974/100x100/shimmer-1626181232-4QxEuu8j0P.jpg"
+    },
+    {
+      "track" : "Like This",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/973/like-this-1625828434-f8juDYkBsh.mp3",
+      "artist" : "Magnus",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/973/100x100/like-this-1625828429-A8ElGmWROT.jpg"
+    },
+    {
+      "track" : "Daydream",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/972/daydream-1625749236-Tum3XCVtRr.mp3",
+      "artist" : "Romi, Cream Blade",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/972/100x100/daydream-1625749232-JZfwnSfGyq.jpg"
+    },
+    {
+      "track" : "Bittersweet",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/970/bittersweet-1625248833-ZV2HBq4Lr3.mp3",
+      "artist" : "Roses, Time To Talk",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/970/100x100/bittersweet-1625248829-zsyR8EGzX9.png"
+    },
+    {
+      "track" : "For Good",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/971/for-good-1625248844-ZCNGyA4vEW.mp3",
+      "artist" : "Clarx, Guy Arthur",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/971/100x100/for-good-1625248840-qTvWUqB94W.jpg"
+    },
+    {
+      "track" : "Feelings",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/968/feelings-1624636846-EhVGAuxtSW.mp3",
+      "artist" : "Azertion, Diviners",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/968/100x100/feelings-1624636843-jwJFZuXA5i.jpg"
+    },
+    {
+      "track" : "Sanity",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/962/sanity-1623769237-KjJMmVoEli.mp3",
+      "artist" : "Whats Gud, Magnus",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/962/100x100/sanity-1623769234-GVRbCfFddp.jpg"
+    },
+    {
+      "track" : "Freefalling",
+      "streamUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/959/freefalling-1623322833-xK24YExUmy.mp3",
+      "artist" : "Facading",
+      "coverUrl" : "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/959/100x100/freefalling-1623322830-hoUJMHtt6U.jpg"
+    }
+  ]
+}
