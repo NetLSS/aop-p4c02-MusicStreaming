@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,5 +26,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_background_view"
         app:layout_constraintVertical_weight="2" />
+
+    <TextView
+        android:id="@+id/track_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="애국가" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/gray_aa"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/track_tv"
+        tools:text="대한민국" />
+
+    <!--    translationY 속성으로 아래로 내림.
+                이럴 경우 이를 참조해서 제약을 거는 경우 원래 위치 기준으로 제약함
+                때문에 유의해서 사용
+
+            cardElevation 바닥에서 띄워서 그림자 생성
+            cardCornerRadius 둥근 모양을 형성하도록
+    -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cover_image_card_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:translationY="30dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/top_background_view"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/cover_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@color/purple_200" />
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cover_image_card_view"
+        tools:text="safsdsagsdg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
