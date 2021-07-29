@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lilcode.aop.p4c02.musicstreaming.databinding.FragmentPlayerBinding
 import com.lilcode.aop.p4c02.musicstreaming.service.MusicDto
 import com.lilcode.aop.p4c02.musicstreaming.service.MusicService
@@ -19,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PlayerFragment : Fragment(R.layout.fragment_player) {
 
     private var _binding: FragmentPlayerBinding? = null
-
+    private lateinit var adapter: MusicAdapter
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -38,9 +39,16 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         super.onViewCreated(view, savedInstanceState)
 
         initPlayListButton()
-
+        initRecyclerView()
         getVideoListFromServer()
 
+    }
+
+    private fun initRecyclerView() {
+        adapter = MusicAdapter()
+
+        binding.playListRecyclerView.adapter = adapter
+        binding.playListRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
     private fun initPlayListButton() {
@@ -66,6 +74,13 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
                             response: Response<MusicDto>
                         ) {
                             Log.d("PlayerFragment", "${response.body()}")
+
+                            response.body()?.let{
+                                val modelList = it.musics.mapIndexed{ index, musicEntity ->
+                                    musicEntity.mapper(index.toLong())
+                                }
+                                adapter.submitList(modelList)
+                            }
                         }
 
                         override fun onFailure(call: Call<MusicDto>, t: Throwable) {
