@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,10 +58,28 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         initPlayView()
         initPlayListButton()
         initPlayControlButtons()
+        initSeekBar()
         initRecyclerView()
 
         getVideoListFromServer()
 
+    }
+
+    private fun initSeekBar() {
+        binding.playerSeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                player?.seekTo(seekBar.progress * 1000L)
+            }
+
+        })
+
+        binding.playListSeekBar.isEnabled = false
     }
 
     private fun initPlayControlButtons() {
