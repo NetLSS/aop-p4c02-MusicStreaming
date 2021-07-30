@@ -71,10 +71,14 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         }
 
         binding.skipNextImageView.setOnClickListener {
+            val nextMusic = model.nextMusic() ?: return@setOnClickListener
+            playMusic(nextMusic)
 
         }
 
         binding.skipPrevImageView.setOnClickListener {
+            val prevMusic = model.prevMusic() ?: return@setOnClickListener
+            playMusic(prevMusic)
 
         }
     }
@@ -96,13 +100,25 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
                     binding.playControlImageView.setImageResource(R.drawable.ic_baseline_play_arrow_24)
                 }
             }
+
+            // 미디어 아이템이 바뀔 때
+            override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+                super.onMediaItemTransition(mediaItem, reason)
+
+                val newIndex: String = mediaItem?.mediaId ?:return
+                model.currentPosition = newIndex.toInt()
+                adapter.submitList(model.getAdapterModels())
+
+                // 리사이클러 뷰 스크롤 이동
+                binding.playListRecyclerView.scrollToPosition(model.currentPosition)
+            }
         })
 
     }
 
     private fun initRecyclerView() {
         adapter = MusicAdapter {
-            // TODO: 음악을 재생
+            playMusic(it)
         }
 
         binding.playListRecyclerView.adapter = adapter
@@ -158,7 +174,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         context?.let {
             player?.addMediaItems(modelList.map { musicModel ->
                 MediaItem.Builder()
-                    .setMediaId(musicModel.id.toString())
+                    .setMediaId(musicModel.id.toString()) // 미디어 아이디를 musicModel id로
                     .setUri(musicModel.streamUrl)
                     .build()
                 /*
@@ -169,6 +185,12 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
             player?.prepare()
         }
+    }
+
+    private fun playMusic(musicModel: MusicModel) {
+        model.updateCurrentPosition(musicModel)
+        player?.seekTo(model.currentPosition, 0) // positionsMs=0 초 부터 시작
+        player?.play()
     }
 
     companion object {
