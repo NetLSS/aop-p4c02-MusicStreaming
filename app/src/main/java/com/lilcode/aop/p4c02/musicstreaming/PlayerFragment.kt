@@ -21,6 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class PlayerFragment : Fragment(R.layout.fragment_player) {
 
@@ -33,6 +34,10 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
     private val binding get() = requireNotNull(_binding)
 
     private var player: SimpleExoPlayer? = null
+
+    private val updateSeekRunnable = Runnable {
+        updateSeek()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -106,7 +111,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
             override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
                 super.onMediaItemTransition(mediaItem, reason)
 
-                val newIndex: String = mediaItem?.mediaId ?:return
+                val newIndex: String = mediaItem?.mediaId ?: return
                 model.currentPosition = newIndex.toInt()
                 adapter.submitList(model.getAdapterModels())
 
@@ -115,7 +120,51 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
                 updatePlayerView(model.currentMusicModel())
             }
+
+            // 재생, 재생완료, 버퍼링 상태 ...
+            override fun onPlaybackStateChanged(state: Int) {
+                super.onPlaybackStateChanged(state)
+
+                updateSeek()
+            }
         })
+
+    }
+
+    private fun updateSeek() {
+        val player = this.player ?: return
+        val duration = if (player.duration >= 0) player.duration else 0 // 전체 음악 길이
+        val position = player.currentPosition
+
+        updateSeekUi(duration, position)
+
+        val state = player.playbackState
+
+        view?.removeCallbacks(updateSeekRunnable)
+        // 재생 중 일때 (재생 중이 아니거나, 재생이 끝나지 않은 경우)
+        if (state != Player.STATE_IDLE && state != Player.STATE_ENDED) {
+            view?.postDelayed(updateSeekRunnable, 1000) // 1초에 한번씩 실행
+        }
+
+    }
+
+    private fun updateSeekUi(duration: Long, position: Long) {
+        binding.playListSeekBar.max = (duration / 1000).toInt()
+        binding.playListSeekBar.progress = (position / 1000).toInt()
+
+        binding.playerSeekBar.max = (duration / 1000).toInt()
+        binding.playerSeekBar.progress = (position / 1000).toInt()
+
+        binding.playTimeTextView.text = String.format(
+            "%02d:%02d",
+            TimeUnit.MINUTES.convert(position, TimeUnit.MILLISECONDS),
+            (position / 1000) % 60
+        )
+        binding.totalTimeTextView.text= String.format(
+            "%02d:%02d",
+            TimeUnit.MINUTES.convert(duration, TimeUnit.MILLISECONDS),
+            (duration / 1000) % 60
+        )
 
     }
 
