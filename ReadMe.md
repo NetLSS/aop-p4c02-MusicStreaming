@@ -12,17 +12,11 @@
 8. ExoPlayer를 이용하여 음악 재생하기 (4)
 9. 아웃트로
 
-
-
 # 결과화면
 
 ![1](./screenshot/1.png)
 
-
-
 ![2](./screenshot/2.png)
-
-
 
 # 이 챕터를 통해 배우는 것
 
@@ -31,8 +25,8 @@
     - Playlist 등
 - androidx.constraintlayout.widget.Group
 - **Seekbar** Custom 하기
-
-
+- postDelayed
+- TimeUnit
 
 ### ExoPlayer
 
@@ -42,7 +36,33 @@
 - 유튜브 앱에서 사용하는 라이브러리
 - https://exoplayer.dev/hello-world.html
 
+- 2가지 seekTo() 사용
 
+다른 미디어 아이템으로 이동
+```kotlin
+    private fun playMusic(musicModel: MusicModel) {
+    model.updateCurrentPosition(musicModel)
+    player?.seekTo(model.currentPosition, 0) // positionsMs=0 초 부터 시작
+    player?.play()
+}
+```
+
+실제 재생 위치로 이동
+```kotlin
+    private fun initSeekBar() {
+    binding.playerSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        }
+
+        override fun onStartTrackingTouch(seekBar: SeekBar?) {
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar) {
+            player?.seekTo(seekBar.progress * 1000L)
+        }
+
+    })
+```
 
 ---
 
@@ -67,3 +87,44 @@ Seekbar 를 custom 하여 원하는 UI 로 표시할 수 있음.
 ### group
 
 - 그룹 위젯
+- 재생목록, 플레이어 그룹 나눠서 나타내기를 관리함
+
+### diffUtil
+
+```kotlin
+    companion object {
+    val diffUtil = object : DiffUtil.ItemCallback<MusicModel>() {
+        override fun areItemsTheSame(
+            oldItem: MusicModel,
+            newItem: MusicModel
+        ): Boolean { // id 값만 비교
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(
+            oldItem: MusicModel,
+            newItem: MusicModel
+        ): Boolean { // 내부 내용 비교
+            return oldItem == newItem
+        }
+    }
+}
+```
+
+```kotlin
+    fun getAdapterModels(): List<MusicModel> {
+    return playMusicList.mapIndexed { index, musicModel ->
+        val newItem = musicModel.copy(
+            isPlaying = index == currentPosition
+        )
+        newItem
+    }
+}
+```
+
+areItemsTheSame = 실제로 같은 아이템인지
+
+areContentsTheSame = 실제로 컨텐츠와 같은 컨텐츠 인지
+
+해당 프로젝트 에서 아이디 값은 인덱스로. 데이터 클래스의 copy()를 통해 실제로 새로운 모델로 만들어 주었음 (주소값이 새로운 값으로)
+areContentsTheSame() 에서 실제로 다른 아이템으로 인식하므로 ui 업데이트가 가능했음

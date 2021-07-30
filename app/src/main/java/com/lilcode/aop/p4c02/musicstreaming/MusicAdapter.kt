@@ -53,7 +53,6 @@ class MusicAdapter(private val callback: (MusicModel) -> Unit): ListAdapter<Musi
             override fun areContentsTheSame(oldItem: MusicModel, newItem: MusicModel): Boolean { // 내부 내용 비교
                 return oldItem == newItem
             }
-
         }
     }
 
