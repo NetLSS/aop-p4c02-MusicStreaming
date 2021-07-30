@@ -25,10 +25,11 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
     private var _binding: FragmentPlayerBinding? = null
     private lateinit var adapter: MusicAdapter
+    private var model: PlayerModel = PlayerModel()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    private val binding get() = requireNotNull(_binding)
 
     private var player: SimpleExoPlayer? = null
 
@@ -112,6 +113,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         binding.playListImageView.setOnClickListener {
             //TODO: 만약 서버에서 데이터가 다 불려오지 않은 상태 일 때
 
+            // 강의 와는 다르게 구현
             binding.playListGroup.isVisible = binding.playerViewGroup.isVisible.also {
                 binding.playerViewGroup.isVisible = binding.playListGroup.isVisible
             }
@@ -134,13 +136,11 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
                         ) {
                             Log.d("PlayerFragment", "${response.body()}")
 
-                            response.body()?.let {
-                                val modelList = it.musics.mapIndexed { index, musicEntity ->
-                                    musicEntity.mapper(index.toLong())
-                                }
+                            response.body()?.let { musicDto ->
+                                model = musicDto.mapper()
 
-                                setMusicList(modelList)
-                                adapter.submitList(modelList)
+                                setMusicList(model.getAdapterModels())
+                                adapter.submitList(model.getAdapterModels())
                             }
                         }
 
@@ -153,9 +153,9 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
     }
 
     private fun setMusicList(modelList: List<MusicModel>) {
-        player?:return
+        player ?: return
         context?.let {
-            player?.addMediaItems(modelList.map{ musicModel ->
+            player?.addMediaItems(modelList.map { musicModel ->
                 MediaItem.Builder()
                     .setMediaId(musicModel.id.toString())
                     .setUri(musicModel.streamUrl)
