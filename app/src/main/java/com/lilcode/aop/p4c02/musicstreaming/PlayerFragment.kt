@@ -111,7 +111,8 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
     private fun initPlayListButton() {
         binding.playListImageView.setOnClickListener {
-            //TODO: 만약 서버에서 데이터가 다 불려오지 않은 상태 일 때
+            // 만약 서버에서 데이터가 다 불려오지 않은 상태 일 때
+            if (model.currentPosition == -1) return@setOnClickListener
 
             // 강의 와는 다르게 구현
             binding.playListGroup.isVisible = binding.playerViewGroup.isVisible.also {
