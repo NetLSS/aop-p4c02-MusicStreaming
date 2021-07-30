@@ -1,5 +1,6 @@
 package com.lilcode.aop.p4c02.musicstreaming
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -65,6 +66,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initSeekBar() {
         binding.playerSeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -79,7 +81,10 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
         })
 
-        binding.playListSeekBar.isEnabled = false
+        // clickable 을 false 로 주면 됨.
+//        binding.playListSeekBar.setOnTouchListener { v, event ->
+//            false // 터치 무시
+//        }
     }
 
     private fun initPlayControlButtons() {
@@ -273,6 +278,21 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         model.updateCurrentPosition(musicModel)
         player?.seekTo(model.currentPosition, 0) // positionsMs=0 초 부터 시작
         player?.play()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        player?.pause()
+        view?.removeCallbacks(updateSeekRunnable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        _binding = null
+        player?.release()
+        view?.removeCallbacks(updateSeekRunnable)
     }
 
     companion object {
