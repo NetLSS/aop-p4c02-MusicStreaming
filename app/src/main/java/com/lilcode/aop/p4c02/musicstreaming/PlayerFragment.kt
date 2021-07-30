@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -111,9 +112,22 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
                 // 리사이클러 뷰 스크롤 이동
                 binding.playListRecyclerView.scrollToPosition(model.currentPosition)
+
+                updatePlayerView(model.currentMusicModel())
             }
         })
 
+    }
+
+    private fun updatePlayerView(currentMusicModel: MusicModel?) {
+        currentMusicModel ?: return
+
+        binding.trackTextView.text = currentMusicModel.track
+        binding.artistTextView.text = currentMusicModel.artist
+
+        Glide.with(binding.coverImageView.context)
+            .load(currentMusicModel.coverUrl)
+            .into(binding.coverImageView)
     }
 
     private fun initRecyclerView() {
