@@ -1,5 +1,7 @@
 # aop-part4-chapter02 - 음악 스트리밍 앱
 
+자세한 구현 설명은 저의 [블로그 글](https://whyprogrammer.tistory.com/619) 에서도 확인하실 수 있습니다.
+
 # 목차
 
 1. 인트로 (완성앱 & 구현 기능 소개)
@@ -14,9 +16,9 @@
 
 # 결과화면
 
-![1](./screenshot/1.png)
+![1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbrmKcd%2FbtraNyfKC30%2FIyV5AzOI6PzyqhPtJMZBW0%2Fimg.png)
 
-![2](./screenshot/2.png)
+![2](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FmuUVN%2FbtraVTpxsGJ%2F1IM7rUSKD3Y46ZvFl5a7Bk%2Fimg.png)
 
 # 이 챕터를 통해 배우는 것
 

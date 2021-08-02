@@ -165,7 +165,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         val state = player.playbackState
 
         view?.removeCallbacks(updateSeekRunnable)
-        // 재생 중 일때 (재생 중이 아니거나, 재생이 끝나지 않은 경우)
+        // 재생 중 일때 (대 중이 아니거나, 재생이 끝나지 않은 경우)
         if (state != Player.STATE_IDLE && state != Player.STATE_ENDED) {
             view?.postDelayed(updateSeekRunnable, 1000) // 1초에 한번씩 실행
         }
@@ -173,23 +173,22 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
     }
 
     private fun updateSeekUi(duration: Long, position: Long) {
-        binding.playListSeekBar.max = (duration / 1000).toInt()
-        binding.playListSeekBar.progress = (position / 1000).toInt()
+        binding.playListSeekBar.max = (duration / 1000).toInt() // 총 길이를 설정. 1000으로 나눠 작게
+        binding.playListSeekBar.progress = (position / 1000).toInt() // 동일하게 1000으로 나눠 작게
 
         binding.playerSeekBar.max = (duration / 1000).toInt()
         binding.playerSeekBar.progress = (position / 1000).toInt()
 
         binding.playTimeTextView.text = String.format(
             "%02d:%02d",
-            TimeUnit.MINUTES.convert(position, TimeUnit.MILLISECONDS),
-            (position / 1000) % 60
+            TimeUnit.MINUTES.convert(position, TimeUnit.MILLISECONDS), // 현재 분
+            (position / 1000) % 60 // 분 단위를 제외한 현재 초
         )
         binding.totalTimeTextView.text= String.format(
             "%02d:%02d",
-            TimeUnit.MINUTES.convert(duration, TimeUnit.MILLISECONDS),
-            (duration / 1000) % 60
+            TimeUnit.MINUTES.convert(duration, TimeUnit.MILLISECONDS), // 전체 분
+            (duration / 1000) % 60 // 분 단위를 제외한 초
         )
-
     }
 
     private fun updatePlayerView(currentMusicModel: MusicModel?) {

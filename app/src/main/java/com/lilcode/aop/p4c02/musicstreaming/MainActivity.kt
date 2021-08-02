@@ -3,6 +3,7 @@ package com.lilcode.aop.p4c02.musicstreaming
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.lilcode.aop.p4c02.musicstreaming.databinding.ActivityMainBinding
+import com.lilcode.aop.p4c02.musicstreaming.service.MusicModel
 
 class MainActivity : AppCompatActivity() {
 

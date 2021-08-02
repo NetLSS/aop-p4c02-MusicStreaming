@@ -9,20 +9,19 @@
         android:id="@+id/player_view_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:constraint_referenced_ids="track_text_view, artist_text_view,
         cover_image_card_view, bottom_background_view,
         player_seek_bar, play_time_text_view, total_time_text_view"
-        tools:visibility="visible"
-        android:visibility="gone"/>
+        tools:visibility="visible" />
 
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/play_list_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="play_list_recycler_view, title_text_view, play_list_seek_bar"
         android:visibility="visible"
-        />
+        app:constraint_referenced_ids="play_list_recycler_view, title_text_view, play_list_seek_bar" />
 
     <View
         android:id="@+id/top_background_view"
@@ -130,10 +129,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:use_controller="false" />
-<!--
-    use_controller 를 true 로 하고 레이아웃 파일을 따로 만들어서 구현하는 방법도 있음
-    (더 쉽게 구현가능한 방법)
--->
+    <!--
+        use_controller 를 true 로 하고 레이아웃 파일을 따로 만들어서 구현하는 방법도 있음
+        (더 쉽게 구현가능한 방법)
+    -->
 
 
     <SeekBar

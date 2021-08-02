@@ -55,6 +55,4 @@ class MusicAdapter(private val callback: (MusicModel) -> Unit): ListAdapter<Musi
             }
         }
     }
-
-
 }
